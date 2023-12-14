@@ -1,10 +1,18 @@
-import './App.css';
-import Header from './components/Layout/Header';
+import React, { useState } from "react";
+import "./App.css";
+import Navigator from "./components/UI/Navigator";
 
-const App = () => {
+function App() {
+  const [navPage, setNavPage] = useState("dashboard");
+
+  const handleNavPage = (page) => {
+    console.log(page);
+    setNavPage(page);
+  };
+
   return (
     <>
-      <Header />
+      <Navigator page={navPage} changePage={handleNavPage} />
     </>
   );
 }

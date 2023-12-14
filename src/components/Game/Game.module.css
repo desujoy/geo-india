@@ -1,0 +1,12 @@
+.game_body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.game_body > div {
+    margin: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
