@@ -10,7 +10,7 @@ const Navigator = (props) => {
       {props.page === "register" || props.page === "login" ? (
         <Auth authPage={props.page} />
       ) : null}
-      {props.page === "dashboard" ? <Dashboard handleScore={props.handleScore}/> : null}
+      {props.page === "dashboard" ? <Dashboard score={props.score} handleScore={props.handleScore}/> : null}
     </div>
   );
 };

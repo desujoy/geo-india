@@ -1,10 +1,16 @@
+import { useEffect, useState } from "react";
 import StreetView from "./Streetview";
 import GuessPanel from "./GuessPanel";
 import classes from "./Game.module.css";
 
 const Game = (props) => {
   const apiKey = "";
-  const position = { lat: 37.7749, lng: -122.4194 };
+  const [position, setPosition] = useState({ lat: 37.7749, lng: -122.4194 });
+  
+  useEffect(() => {
+    console.log("score changed");
+    setPosition({ lat: 37.7749, lng: -122.4194 });
+  }, [props.score]);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
@@ -28,8 +34,6 @@ const Game = (props) => {
   };
 
   const handleGuessSubmit = (userMarker) => {
-    console.log(userMarker.lat, userMarker.lng);
-    console.log(position.lat, position.lng);
     const distance = getDistance(
       userMarker.lat,
       userMarker.lng,

@@ -4,7 +4,7 @@ import classes from "./Dashboard.module.css";
 const Dashboard = (props) => {
   return (
     <div className={classes.dashboard}>
-      <Game handleScore={props.handleScore}/>
+      <Game score={props.score} handleScore={props.handleScore}/>
     </div>
   );
 };
