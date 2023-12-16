@@ -19,7 +19,7 @@ const CreateRoom = (props) => {
       const doc = await addDoc(collection(db, "rooms"), {
         name: roomName,
         password: roomPassword,
-        users: {username: props.username, score: 0}
+        users: [{username: props.username, score: 0}]
       });
       console.log("Document written with ID: ", doc.id);
     } catch (e) {
