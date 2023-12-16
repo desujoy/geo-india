@@ -2,11 +2,22 @@ import { useEffect, useState } from "react";
 import StreetView from "./Streetview";
 import GuessPanel from "./GuessPanel";
 import classes from "./Game.module.css";
+import axios from "axios";
 
 const Game = (props) => {
-  const apiKey = "";
+  const apiKey = "AIzaSyApJA7fCKsudyOB8KTnXQciCKKC0lfgy0Y";
   const [position, setPosition] = useState({ lat: 37.7749, lng: -122.4194 });
-  
+
+  useEffect(() => {
+    axios
+      .get("https://geo-india-b4df4-default-rtdb.asia-southeast1.firebasedatabase.app/coords.json")
+      .then((response) => {
+        const coords = response.data["-NlnTkcCgwJRFNCM2rLk"];
+        const randomIndex = Math.floor(Math.random() * coords.length);
+        setPosition(coords[randomIndex]);
+      });
+  }, []);
+
   useEffect(() => {
     console.log("score changed");
     setPosition({ lat: 37.7749, lng: -122.4194 });
@@ -59,7 +70,7 @@ const Game = (props) => {
       <div style={{ display: "flex", flexDirection: "column", width: "40%" }}>
         <GuessPanel
           apiKey={apiKey}
-          initialPosition={position}
+          initialPosition={{ lat: 23.345386, lng: 80.426676 }}
           onGuessSubmit={handleGuessSubmit}
         />
       </div>

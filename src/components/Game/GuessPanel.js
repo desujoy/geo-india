@@ -28,7 +28,7 @@ const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={initialPosition}
-        zoom={14}
+        zoom={5}
         onClick={handleMapClick}
       >
         {userMarker && <Marker position={userMarker} />}

@@ -7,10 +7,25 @@ const Room = (props) => {
   return (
     <div className={classes.room_card}>
       {props.roomPage === "create" && (
-        <CreateRoom handleRoom={props.handleRoom} />
+        <CreateRoom
+          handleRoom={props.handleRoom}
+          changePage={props.changePage}
+          username={props.username}
+        />
       )}
-      {props.roomPage === "join" && <JoinRoom handleRoom={props.handleRoom} changePage={props.changePage}/>}
-      {props.roomPage === "leaderboard" && <Leaderboard handleRoom={props.handleRoom} changePage={props.changePage}/>}
+      {props.roomPage === "join" && (
+        <JoinRoom
+          handleRoom={props.handleRoom}
+          changePage={props.changePage}
+          username={props.username}
+        />
+      )}
+      {props.roomPage === "leaderboard" && (
+        <Leaderboard
+          handleRoom={props.handleRoom}
+          changePage={props.changePage}
+        />
+      )}
       <button
         className={classes["back-button"]}
         onClick={() => props.changePage("dashboard")}

@@ -17,6 +17,7 @@ const Navigator = (props) => {
           roomPage={props.page}
           changePage={props.changePage}
           handleRoom={props.handleRoom}
+          username={props.username}
         />
       ) : null}
       <Dashboard score={props.score} handleScore={props.handleScore} />

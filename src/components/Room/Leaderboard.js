@@ -1,4 +1,5 @@
 import classes from './Room.module.css';
+import { generateUsername } from 'unique-username-generator';
 
 const Leaderboard = () => {
     return (
@@ -15,17 +16,17 @@ const Leaderboard = () => {
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>user1</td>
+                    <td>{generateUsername()}</td>
                     <td>10000</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>user2</td>
+                    <td>{generateUsername()}</td>
                     <td>9000</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>user3</td>
+                    <td>{generateUsername()}</td>
                     <td>4000</td>
                 </tr>
             </tbody>
