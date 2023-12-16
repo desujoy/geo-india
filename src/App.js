@@ -5,6 +5,7 @@ import Navigator from "./components/UI/Navigator";
 function App() {
   const [navPage, setNavPage] = useState("dashboard");
   const [score, setScore] = useState(0);
+  const [room, setRoom] = useState('None');
 
   const handleNavPage = (page) => {
     console.log(page);
@@ -17,6 +18,10 @@ function App() {
     });
   };
 
+  const handleRoom = (newRoom) => {
+    setRoom(newRoom);
+  }
+
   return (
     <>
       <Navigator
@@ -24,6 +29,8 @@ function App() {
         changePage={handleNavPage}
         score={score}
         handleScore={handleScore}
+        room={room}
+        handleRoom={handleRoom}
       />
     </>
   );
