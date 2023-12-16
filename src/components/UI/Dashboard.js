@@ -1,10 +1,10 @@
 import Game from "../Game/Game";
 import classes from "./Dashboard.module.css";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div className={classes.dashboard}>
-      <Game />
+      <Game handleScore={props.handleScore}/>
     </div>
   );
 };

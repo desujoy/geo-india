@@ -6,11 +6,11 @@ import Headers from "../Layout/Headers";
 const Navigator = (props) => {
   return (
     <div className={classes.Navigator}>
-      <Headers changePage={props.changePage} />
+      <Headers changePage={props.changePage} score={props.score}/>
       {props.page === "register" || props.page === "login" ? (
         <Auth authPage={props.page} />
       ) : null}
-      {props.page === "dashboard" ? <Dashboard /> : null}
+      {props.page === "dashboard" ? <Dashboard handleScore={props.handleScore}/> : null}
     </div>
   );
 };
