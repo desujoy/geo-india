@@ -5,10 +5,9 @@ import Navigator from "./components/UI/Navigator";
 function App() {
   const [navPage, setNavPage] = useState("dashboard");
   const [score, setScore] = useState(0);
-  const [room, setRoom] = useState('None');
+  const [room, setRoom] = useState('Sujoy');
 
   const handleNavPage = (page) => {
-    console.log(page);
     setNavPage(page);
   };
 
