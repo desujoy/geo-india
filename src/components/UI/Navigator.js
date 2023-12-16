@@ -10,6 +10,7 @@ const Navigator = (props) => {
         changePage={props.changePage}
         score={props.score}
         room={props.room}
+        username={props.username}
       />
       {props.page!=="dashboard" ? (
         <Room

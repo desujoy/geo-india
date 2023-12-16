@@ -6,7 +6,7 @@ const Headers = (props) => {
   return (
     <div className={classes.header}>
       <h1>Geo-India</h1>
-      <Scoreboard score={props.score} room={props.room}/>
+      <Scoreboard score={props.score} room={props.room} username={props.username}/>
       <Navbar changePage={props.changePage} room={props.room}/>
     </div>
   );

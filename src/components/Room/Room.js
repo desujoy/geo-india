@@ -9,8 +9,8 @@ const Room = (props) => {
       {props.roomPage === "create" && (
         <CreateRoom handleRoom={props.handleRoom} />
       )}
-      {props.roomPage === "join" && <JoinRoom handleRoom={props.handleRoom} />}
-      {props.roomPage === "leaderboard" && <Leaderboard handleRoom={props.handleRoom} />}
+      {props.roomPage === "join" && <JoinRoom handleRoom={props.handleRoom} changePage={props.changePage}/>}
+      {props.roomPage === "leaderboard" && <Leaderboard handleRoom={props.handleRoom} changePage={props.changePage}/>}
       <button
         className={classes["back-button"]}
         onClick={() => props.changePage("dashboard")}

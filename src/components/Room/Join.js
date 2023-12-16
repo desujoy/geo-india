@@ -1,7 +1,7 @@
 import classes from "./Create.module.css";
 import { useState } from "react";
 
-const JoinRoom = () => {
+const JoinRoom = (props) => {
   const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
@@ -13,6 +13,13 @@ const JoinRoom = () => {
       return;
     }
     setError(null);
+    if (roomName==="Sujoy" && roomPassword==="1234") {
+      props.handleRoom("Sujoy");
+      props.changePage("dashboard"); 
+    } else {
+      setError("Invalid room name or password");
+      return;
+    }
     console.log(roomName, roomPassword);
   }
 
