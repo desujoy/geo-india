@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import React, { useState } from "react";
+import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
 
 const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
   const [userMarker, setUserMarker] = useState(null);
 
   const mapContainerStyle = {
-    width: '90%',
-    height: '400px',
+    width: "90%",
+    height: "400px",
   };
 
   const handleMapClick = (event) => {
@@ -23,7 +23,6 @@ const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
   };
 
   return (
-    
     <LoadScript googleMapsApiKey={apiKey}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -41,7 +40,23 @@ const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
             Your marker: Latitude {userMarker.lat}, Longitude {userMarker.lng}
           </p>
         )}
-        <button onClick={handleGuessSubmit} disabled={!userMarker}>
+        <button
+          style={{
+            backgroundColor: "#4CAF50",
+            border: "none",
+            color: "white",
+            padding: "15px 32px",
+            textAlign: "center",
+            textDecoration: "none",
+            display: "inline-block",
+            fontSize: "16px",
+            margin: "4px 2px",
+            cursor: "pointer",
+            borderRadius: "12px",
+          }}
+          onClick={handleGuessSubmit}
+          disabled={!userMarker}
+        >
           Submit Guess
         </button>
       </div>
