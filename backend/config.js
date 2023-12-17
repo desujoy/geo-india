@@ -5,10 +5,7 @@ const uri =
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(uri);
     console.log("MongoDB connection SUCCESS");
   } catch (error) {
     console.log("MongoDB connection FAIL");
@@ -17,21 +14,21 @@ const connectDB = async () => {
 };
 
 const coordsSchema = mongoose.Schema({
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-    });
+  lat: { type: Number, required: true },
+  long: { type: Number, required: true },
+});
 const coordsModel = mongoose.model("coords", coordsSchema);
 
 const roomsSchema = mongoose.Schema({
-    name: { type: String, required: true },
-    password: { type: String, required: true },
-    users: [{username: String, score: Number}]
-    });
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+  users: [{ username: String, score: Number }],
+});
 const roomsModel = mongoose.model("rooms", roomsSchema);
 
 const db = {
-    coords: coordsModel,
-    rooms: roomsModel
-}
+  coords: coordsModel,
+  rooms: roomsModel,
+};
 
 export { connectDB, db, coordsModel, roomsModel };

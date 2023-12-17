@@ -12,17 +12,17 @@ app.get("/", (req, res) => {
 
 app.get("/api/coords", async (req, res) => {
   const coords = await coordsModel.find({});
-  console.log(coords);
+  // console.log(coords);
   const coordsArray = [];
   for (let i = 0; i < coords.length; i++) {
-    console.log(coords[i].long);
+    // console.log(coords[i].long);
     coordsArray.push({
         lat: coords[i].lat,
         lng: coords[i].long,
     });
   }
-  console.log(coordsArray);
-  res.send(coordsArray);
+  // console.log(coordsArray);
+  res.status(200).send(coordsArray);
 });
 
 app.get("/api/rooms", async (req, res) => {
