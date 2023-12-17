@@ -10,17 +10,14 @@ const Game = (props) => {
 
   useEffect(() => {
     axios
-      .get("https://geo-india-b4df4-default-rtdb.asia-southeast1.firebasedatabase.app/coords.json")
+      .get(
+        "https://geo-india-b4df4-default-rtdb.asia-southeast1.firebasedatabase.app/coords.json"
+      )
       .then((response) => {
         const coords = response.data["-NlnTkcCgwJRFNCM2rLk"];
         const randomIndex = Math.floor(Math.random() * coords.length);
         setPosition(coords[randomIndex]);
       });
-  }, []);
-
-  useEffect(() => {
-    console.log("score changed");
-    setPosition({ lat: 37.7749, lng: -122.4194 });
   }, [props.score]);
 
   const deg2rad = (deg) => {

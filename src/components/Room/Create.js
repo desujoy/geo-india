@@ -1,7 +1,7 @@
 import classes from "./Create.module.css";
 import { useState } from "react";
 import { db } from "../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDoc, doc } from "firebase/firestore";
 
 const CreateRoom = (props) => {
   const [error, setError] = useState(null);
@@ -15,16 +15,16 @@ const CreateRoom = (props) => {
       return;
     }
     setError(null);
-    try {
-      const doc = await addDoc(collection(db, "rooms"), {
-        name: roomName,
-        password: roomPassword,
-        users: [{username: props.username, score: 0}]
-      });
-      console.log("Document written with ID: ", doc.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+    // try {
+    //   const doc = await addDoc(collection(db, "rooms"), {
+    //     name: roomName,
+    //     password: roomPassword,
+    //     users: [{username: props.username, score: 0}]
+    //   });
+    //   console.log("Document written with ID: ", doc.id);
+    // } catch (e) {
+    //   console.error("Error adding document: ", e);
+    // }
     props.handleRoom(roomName);
     props.changePage("dashboard");
     console.log(roomName, roomPassword);
