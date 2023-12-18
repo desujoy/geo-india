@@ -5,11 +5,16 @@ import classes from "./Game.module.css";
 import axios from "axios";
 import { db } from "../../firebase";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
+import QPanel from "./QPanel";
+import { maplist, guesslist } from "./lists";
 
 const updateScore = async (room, username, score) => {
   const roomRef = doc(db, "rooms", room);
   const docSnap = await getDoc(roomRef);
   const users = docSnap.data().users;
+  if (!users) {
+    return;
+  }
   const userIndex = users.findIndex((user) => user.username === username);
   users[userIndex].score = score;
   await updateDoc(roomRef, {
@@ -20,6 +25,8 @@ const updateScore = async (room, username, score) => {
 const Game = (props) => {
   const apiKey = "AIzaSyApJA7fCKsudyOB8KTnXQciCKKC0lfgy0Y";
   const [position, setPosition] = useState({ lat: 37.7749, lng: -122.4194 });
+  const [isStreetView, setIsStreetView] = useState(false);
+  const [map, setMap] = useState("andhra17.gif");
 
   useEffect(() => {
     axios
@@ -31,7 +38,8 @@ const Game = (props) => {
         const randomIndex = Math.floor(Math.random() * coords.length);
         setPosition(coords[randomIndex]);
       });
-      updateScore(props.room, props.username, props.score);
+    updateScore(props.room, props.username, props.score);
+    setMap(maplist[Math.floor(Math.random() * maplist.length)]);
   }, [props.score, props.room, props.username]);
 
   const deg2rad = (deg) => {
@@ -77,12 +85,17 @@ const Game = (props) => {
 
   return (
     <div className={classes.game_body}>
-      <StreetView apiKey={apiKey} position={position} />
+      {isStreetView && <StreetView apiKey={apiKey} position={position} />}
+      {!isStreetView && <QPanel map={map} />}
       <div style={{ display: "flex", flexDirection: "column", width: "40%" }}>
         <GuessPanel
+          isStreetView={isStreetView}
           apiKey={apiKey}
           initialPosition={{ lat: 23.345386, lng: 80.426676 }}
           onGuessSubmit={handleGuessSubmit}
+          guesslist={guesslist}
+          map={map}
+          handleScore={props.handleScore}
         />
       </div>
     </div>

@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
+import APanel from "./APanel";
+import { correct } from "./lists";
 
-const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
+const GuessPanel = ({
+  apiKey,
+  initialPosition,
+  onGuessSubmit,
+  isStreetView,
+  guesslist,
+  map,
+  handleScore
+}) => {
   const [userMarker, setUserMarker] = useState(null);
 
   const mapContainerStyle = {
@@ -24,16 +34,18 @@ const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
 
   return (
     <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={initialPosition}
-        zoom={5}
-        onClick={handleMapClick}
-      >
-        {userMarker && <Marker position={userMarker} />}
-      </GoogleMap>
-
-      <div>
+      {isStreetView && (
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={initialPosition}
+          zoom={5}
+          onClick={handleMapClick}
+        >
+          {userMarker && <Marker position={userMarker} />}
+        </GoogleMap>
+      )}
+      {!isStreetView && <APanel map={map} guesslist={guesslist} correct={correct} handleScore={handleScore}/>}
+      {isStreetView && <div>
         <h2>Make Your Guess</h2>
         {userMarker && (
           <p>
@@ -59,7 +71,7 @@ const GuessPanel = ({ apiKey, initialPosition, onGuessSubmit }) => {
         >
           Submit Guess
         </button>
-      </div>
+      </div> }
     </LoadScript>
   );
 };
