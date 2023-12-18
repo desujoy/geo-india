@@ -12,15 +12,21 @@ const Navigator = (props) => {
         room={props.room}
         username={props.username}
       />
-      {props.page!=="dashboard" ? (
+      {props.page !== "dashboard" ? (
         <Room
           roomPage={props.page}
           changePage={props.changePage}
           handleRoom={props.handleRoom}
           username={props.username}
+          room={props.room}
         />
       ) : null}
-      <Dashboard score={props.score} handleScore={props.handleScore} />
+      <Dashboard
+        score={props.score}
+        username={props.username}
+        room={props.room}
+        handleScore={props.handleScore}
+      />
     </div>
   );
 };

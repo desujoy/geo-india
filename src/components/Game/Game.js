@@ -3,6 +3,23 @@ import StreetView from "./Streetview";
 import GuessPanel from "./GuessPanel";
 import classes from "./Game.module.css";
 import axios from "axios";
+import { db } from "../../firebase";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
+
+const updateScore = async (room, username, score) => {
+  // console.log(room, username, score);
+  const roomRef = doc(db, "rooms", room);
+  const docSnap = await getDoc(roomRef);
+  const users = docSnap.data().users;
+  // console.log(users);
+  const userIndex = users.findIndex((user) => user.username === username);
+  // console.log(userIndex);
+  users[userIndex].score = score;
+  await updateDoc(roomRef, {
+    users: users,
+  });
+  // console.log(res);
+};
 
 const Game = (props) => {
   const apiKey = "AIzaSyApJA7fCKsudyOB8KTnXQciCKKC0lfgy0Y";
@@ -18,7 +35,8 @@ const Game = (props) => {
         const randomIndex = Math.floor(Math.random() * coords.length);
         setPosition(coords[randomIndex]);
       });
-  }, [props.score]);
+      updateScore(props.room, props.username, props.score);
+  }, [props.score, props.room, props.username]);
 
   const deg2rad = (deg) => {
     return deg * (Math.PI / 180);

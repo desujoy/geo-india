@@ -1,7 +1,7 @@
 import classes from "./Create.module.css";
 import { useState } from "react";
 import { db } from "../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { setDoc, Timestamp, getDoc, doc } from "firebase/firestore";
 
 const CreateRoom = (props) => {
   const [error, setError] = useState(null);
@@ -15,18 +15,30 @@ const CreateRoom = (props) => {
       return;
     }
     setError(null);
+    const roomRef = doc(db, "rooms", roomName);
+    const docSnap = await getDoc(roomRef);
+    if (docSnap.exists()) {
+      setError("Room already exists");
+      return;
+    }
 
     try {
-      const doc = await addDoc(collection(db, "rooms"), {
-        name: roomName,
-        password: roomPassword,
-        users: [{username: props.username, score: 0}]
-      });
+      const doc = await setDoc(
+        roomRef,
+        {
+          name: roomName,
+          password: roomPassword,
+          users: [{ username: props.username, score: 0 }],
+          createdAt: Timestamp.now(),
+        },
+        { merge: true }
+      );
       console.log("Document written with ID: ", doc.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
     props.handleRoom(roomName);
+    localStorage.setItem("room", roomName);
     props.changePage("dashboard");
     console.log(roomName, roomPassword);
   };

@@ -24,6 +24,7 @@ const Room = (props) => {
         <Leaderboard
           handleRoom={props.handleRoom}
           changePage={props.changePage}
+          roomName={props.room}
         />
       )}
       <button

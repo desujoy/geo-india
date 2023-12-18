@@ -1,10 +1,12 @@
 import classes from "./Create.module.css";
 import { useState } from "react";
+import { db } from "../../firebase";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 const JoinRoom = (props) => {
   const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const roomName = e.target["room-name"].value;
     const roomPassword = e.target["room-password"].value;
@@ -13,15 +15,33 @@ const JoinRoom = (props) => {
       return;
     }
     setError(null);
-    if (roomName==="Sujoy" && roomPassword==="1234") {
-      props.handleRoom("Sujoy");
-      props.changePage("dashboard"); 
+    const roomRef = doc(db, "rooms", roomName);
+    const docSnap = await getDoc(roomRef);
+    if (!docSnap.exists()) {
+      setError("Room does not exist");
+      return;
+    }
+    if (docSnap.data().password === roomPassword) {
+      if (docSnap.data().users.length >= 10) {
+        setError("Room is full");
+        return;
+      }
+      const users = docSnap.data().users;
+      if (users.find((user) => user.username !== props.username)) {
+        users.push({ username: props.username, score: 0 });
+        await updateDoc(roomRef, {
+          users: users,
+        });
+      }
+      localStorage.setItem("room", roomName);
+      props.handleRoom(roomName);
+      props.changePage("dashboard");
     } else {
       setError("Invalid room name or password");
       return;
     }
     console.log(roomName, roomPassword);
-  }
+  };
 
   return (
     <div className={classes.room}>
@@ -31,7 +51,7 @@ const JoinRoom = (props) => {
         <input type="text" name="room-name" id="room-name" />
         <label htmlFor="room-password">Room Password</label>
         <input type="password" name="room-password" id="room-password" />
-      { error && <p className={classes.error}>{error}</p> }
+        {error && <p className={classes.error}>{error}</p>}
         <button>Join</button>
       </form>
     </div>

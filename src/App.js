@@ -19,6 +19,14 @@ function App() {
     setUsername(username);
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem("room")) {
+      setRoom(localStorage.getItem("room"));
+      return;
+    }
+    setRoom('None');
+  }, []);
+
   const handleNavPage = (page) => {
     setNavPage(page);
   };
