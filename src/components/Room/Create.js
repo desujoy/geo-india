@@ -40,7 +40,6 @@ const CreateRoom = (props) => {
     props.handleRoom(roomName);
     localStorage.setItem("room", roomName);
     props.changePage("dashboard");
-    console.log(roomName, roomPassword);
   };
 
   return (

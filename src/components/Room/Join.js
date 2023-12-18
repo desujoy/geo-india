@@ -40,7 +40,6 @@ const JoinRoom = (props) => {
       setError("Invalid room name or password");
       return;
     }
-    console.log(roomName, roomPassword);
   };
 
   return (

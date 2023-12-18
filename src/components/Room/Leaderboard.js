@@ -6,11 +6,8 @@ import { useEffect, useState } from "react";
 const fetchUsers = async (room) => {
     const roomRef = doc(db, "rooms", room);
     const docSnap = await getDoc(roomRef);
-    // console.log(docSnap.data());
     const users = docSnap.data().users;
     const sortedUsers = users.sort((a, b) => b.score - a.score);
-    console.log(sortedUsers);
-    console.log(sortedUsers.map((user, index) => user.username+" "+user.score+" "+index));
     return sortedUsers;
 }
 

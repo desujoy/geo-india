@@ -7,18 +7,14 @@ import { db } from "../../firebase";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 const updateScore = async (room, username, score) => {
-  // console.log(room, username, score);
   const roomRef = doc(db, "rooms", room);
   const docSnap = await getDoc(roomRef);
   const users = docSnap.data().users;
-  // console.log(users);
   const userIndex = users.findIndex((user) => user.username === username);
-  // console.log(userIndex);
   users[userIndex].score = score;
   await updateDoc(roomRef, {
     users: users,
   });
-  // console.log(res);
 };
 
 const Game = (props) => {
