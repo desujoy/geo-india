@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import classes from "./Game.module.css";
 
 const ImageComponent = ({ imagePath }) => {
   const [base64String, setBase64String] = useState(null);
@@ -19,7 +20,7 @@ const ImageComponent = ({ imagePath }) => {
         reader.onloadend = () => setBase64String(reader.result);
         reader.readAsDataURL(blob);
       } catch (error) {
-        console.error('Error fetching and converting image to base64:', error);
+        console.error("Error fetching and converting image to base64:", error);
       }
     };
 
@@ -30,9 +31,10 @@ const ImageComponent = ({ imagePath }) => {
     <div>
       {base64String && (
         <img
+          className={classes.map_image}
           src={base64String}
           alt="Base64-Encoded"
-          style={{ maxWidth: '100%', maxHeight: '100%' }}
+          style={{ maxWidth: "100%", maxHeight: "100%", zIndex: -1000 }}
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #fff;
+    background-color: #71C9CE;
     padding-left: 0.5rem;
     display: flex;
     justify-content: space-between;
@@ -24,8 +24,8 @@
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
-    background-color: #00ccff;
-    color: #000;
+    background-color: #393E46;
+    color: #E3FDFD;
     cursor: pointer;
 
 }

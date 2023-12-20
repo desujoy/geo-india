@@ -10,3 +10,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.map_image{
+    border-color: #000000;
+    border-style: solid;
+    border-width: 10px;
+
+}

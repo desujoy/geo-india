@@ -1,17 +1,26 @@
 import { guesslist } from "./lists";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+
+  useEffect(() => {
+    setSelectedOption(null);
+    setIsCorrect(null);
+  }, []);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsCorrect(null);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const isCorrectOption = selectedOption === correctAnswer;
+    setIsCorrect(isCorrectOption);
+    await delay(5000)
     if (isCorrectOption) {
         handleScore(10);    
     } else {
@@ -21,7 +30,13 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
   };
 
   return (
-    <div>
+    <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignSelf: "center",
+        textAlign: "center",
+      
+    }}>
       <h2>{question}</h2>
       <ul>
         {options.map((option, index) => (
@@ -30,12 +45,20 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
             onClick={() => handleOptionClick(option)}
             style={{
               cursor: "pointer",
-              backgroundColor:
-                selectedOption === option
-                  ? isCorrect
-                    ? "lightgreen"
-                    : "grey"
-                  : "white",
+              backgroundColor: selectedOption === option ? (isCorrect ? "lightgreen" : "lightcoral")  : "#fff595",
+              borderRadius: "30px",
+              padding: "10px",
+              borderBlockColor: "black",
+              borderBlockStyle: "solid",
+              borderBlockWidth: "5px",
+              width: "300px",
+              alignSelf: "center",
+              margin: "10px",
+              textAlign: "center",
+              listStyle: "none",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "indigo",
             }}
           >
             {option}
@@ -62,7 +85,7 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
       </button>
       {selectedOption && isCorrect !== null && (
         <p>
-          Your answer is {isCorrect ? "correct" : "incorrect"}: {selectedOption}
+          Your answer was {isCorrect ? "correct" : "incorrect"}: {selectedOption}
         </p>
       )}
     </div>
