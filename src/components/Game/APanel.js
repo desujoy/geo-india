@@ -20,7 +20,7 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
   const handleSubmit = async () => {
     const isCorrectOption = selectedOption === correctAnswer;
     setIsCorrect(isCorrectOption);
-    await delay(5000)
+    await delay(3000)
     if (isCorrectOption) {
         handleScore(10);    
     } else {
