@@ -28,7 +28,7 @@ const ImageComponent = ({ imagePath }) => {
   }, [imagePath]);
 
   return (
-    <div>
+    <div className={classes.map_container}>
       {base64String && (
         <img
           className={classes.map_image}

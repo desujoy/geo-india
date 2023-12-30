@@ -17,3 +17,9 @@
     border-width: 10px;
 
 }
+
+.map_container {
+    display: flex;
+    max-width: 25%;
+
+}
