@@ -7,7 +7,7 @@ const Headers = (props) => {
     <div className={classes.header}>
       <h1>Geo-India</h1>
       <Scoreboard score={props.score} room={props.room} username={props.username}/>
-      <Navbar changePage={props.changePage} room={props.room}/>
+      <Navbar changePage={props.changePage} room={props.room} changeGameMode={props.changeGameMode}/>
     </div>
   );
 };

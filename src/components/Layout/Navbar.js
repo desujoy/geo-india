@@ -4,6 +4,7 @@ const Navbar = (props) => {
   return (
     <div className={classes.navbar}>
       <ul>
+        <button onClick={() => props.changeGameMode()}>Switch Game</button>
         {props.room !== "None" && (
           <button onClick={() => props.changePage("leaderboard")}>
             Leaderboard

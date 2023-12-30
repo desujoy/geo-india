@@ -1,7 +1,7 @@
 import { guesslist } from "./lists";
 import { useEffect, useState } from "react";
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -20,23 +20,24 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
   const handleSubmit = async () => {
     const isCorrectOption = selectedOption === correctAnswer;
     setIsCorrect(isCorrectOption);
-    await delay(1000)
+    await delay(1000);
     if (isCorrectOption) {
-        handleScore(10);    
+      handleScore(10);
     } else {
-        handleScore(-5);
+      handleScore(-5);
     }
     setIsCorrect(isCorrectOption);
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         display: "flex",
         flexDirection: "column",
         alignSelf: "center",
         textAlign: "center",
-      
-    }}>
+      }}
+    >
       <h2>{question}</h2>
       <ul>
         {options.map((option, index) => (
@@ -45,7 +46,12 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
             onClick={() => handleOptionClick(option)}
             style={{
               cursor: "pointer",
-              backgroundColor: selectedOption === option ? (isCorrect ? "lightgreen" : "lightcoral")  : "#fff595",
+              backgroundColor:
+                selectedOption === option
+                  ? isCorrect
+                    ? "lightgreen"
+                    : "lightcoral"
+                  : "#fff595",
               borderRadius: "30px",
               padding: "10px",
               borderBlockColor: "black",
@@ -85,7 +91,8 @@ const McqQuestion = ({ options, correctAnswer, question, handleScore }) => {
       </button>
       {selectedOption && isCorrect !== null && (
         <p>
-          Your answer was {isCorrect ? "correct" : "incorrect"}: {selectedOption}
+          Your answer was {isCorrect ? "correct" : "incorrect"}:{" "}
+          {selectedOption}
         </p>
       )}
     </div>
@@ -104,11 +111,10 @@ const APanel = (props) => {
   const guesslist2 = guesslist.filter((item) => item !== correctOption);
   const randomOptions = [];
   randomOptions.push(correctOption);
-  for (let i = 0; i < 3; i++) {
-    randomOptions.push(
-      guesslist2[Math.floor(Math.random() * guesslist2.length)]
-    );
-  }
+  randomOptions.push(guesslist2[Math.floor(Math.random() * guesslist2.length/3)]);
+  randomOptions.push(guesslist2[Math.floor(Math.random() * guesslist2.length/3)+Math.floor(guesslist2.length/3)]);
+  randomOptions.push(guesslist2[Math.floor(Math.random() * guesslist2.length/3)+Math.floor(2*guesslist2.length/3)]);
+
   randomOptions.sort(() => Math.random() - 0.5);
   return (
     <McqQuestion

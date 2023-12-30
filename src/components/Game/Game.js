@@ -25,7 +25,6 @@ const updateScore = async (room, username, score) => {
 const Game = (props) => {
   const apiKey = "AIzaSyApJA7fCKsudyOB8KTnXQciCKKC0lfgy0Y";
   const [position, setPosition] = useState({ lat: 37.7749, lng: -122.4194 });
-  const [isStreetView, setIsStreetView] = useState(false);
   const [map, setMap] = useState("andhra17.gif");
 
   useEffect(() => {
@@ -85,11 +84,11 @@ const Game = (props) => {
 
   return (
     <div className={classes.game_body}>
-      {isStreetView && <StreetView apiKey={apiKey} position={position} />}
-      {!isStreetView && <QPanel map={map} />}
+      {props.isStreetView && <StreetView apiKey={apiKey} position={position} />}
+      {!props.isStreetView && <QPanel map={map} />}
       <div style={{ display: "flex", flexDirection: "column", width: "40%" }}>
         <GuessPanel
-          isStreetView={isStreetView}
+          isStreetView={props.isStreetView}
           apiKey={apiKey}
           initialPosition={{ lat: 23.345386, lng: 80.426676 }}
           onGuessSubmit={handleGuessSubmit}

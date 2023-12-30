@@ -9,6 +9,7 @@ const Dashboard = (props) => {
         username={props.username}
         room={props.room}
         handleScore={props.handleScore}
+        isStreetView={props.isStreetView}
       />
     </div>
   );

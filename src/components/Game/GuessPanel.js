@@ -10,7 +10,7 @@ const GuessPanel = ({
   isStreetView,
   guesslist,
   map,
-  handleScore
+  handleScore,
 }) => {
   const [userMarker, setUserMarker] = useState(null);
 
@@ -33,46 +33,57 @@ const GuessPanel = ({
   };
 
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
+    <>
       {isStreetView && (
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={initialPosition}
-          zoom={5}
-          onClick={handleMapClick}
-        >
-          {userMarker && <Marker position={userMarker} />}
-        </GoogleMap>
+        <LoadScript googleMapsApiKey={apiKey}>
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={initialPosition}
+            zoom={5}
+            onClick={handleMapClick}
+          >
+            {userMarker && <Marker position={userMarker} />}
+          </GoogleMap>
+          )
+          <div>
+            <h2>Make Your Guess</h2>
+            {userMarker && (
+              <p>
+                Your marker: Latitude {userMarker.lat}, Longitude{" "}
+                {userMarker.lng}
+              </p>
+            )}
+            <button
+              style={{
+                backgroundColor: "#4CAF50",
+                border: "none",
+                color: "white",
+                padding: "15px 32px",
+                textAlign: "center",
+                textDecoration: "none",
+                display: "inline-block",
+                fontSize: "16px",
+                margin: "4px 2px",
+                cursor: "pointer",
+                borderRadius: "12px",
+              }}
+              onClick={handleGuessSubmit}
+              disabled={!userMarker}
+            >
+              Submit Guess
+            </button>
+          </div>{" "}
+        </LoadScript>
       )}
-      {!isStreetView && <APanel map={map} guesslist={guesslist} correct={correct} handleScore={handleScore}/>}
-      {isStreetView && <div>
-        <h2>Make Your Guess</h2>
-        {userMarker && (
-          <p>
-            Your marker: Latitude {userMarker.lat}, Longitude {userMarker.lng}
-          </p>
-        )}
-        <button
-          style={{
-            backgroundColor: "#4CAF50",
-            border: "none",
-            color: "white",
-            padding: "15px 32px",
-            textAlign: "center",
-            textDecoration: "none",
-            display: "inline-block",
-            fontSize: "16px",
-            margin: "4px 2px",
-            cursor: "pointer",
-            borderRadius: "12px",
-          }}
-          onClick={handleGuessSubmit}
-          disabled={!userMarker}
-        >
-          Submit Guess
-        </button>
-      </div> }
-    </LoadScript>
+      {!isStreetView && (
+        <APanel
+          map={map}
+          guesslist={guesslist}
+          correct={correct}
+          handleScore={handleScore}
+        />
+      )}
+    </>
   );
 };
 

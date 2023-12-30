@@ -1,9 +1,16 @@
+import React, { useState } from "react";
 import classes from "./Navigator.module.css";
 import Dashboard from "./Dashboard";
 import Headers from "../Layout/Headers";
 import Room from "../Room/Room";
 
 const Navigator = (props) => {
+  const [isStreetView, setIsStreetView] = useState(true);
+
+  const changeGameMode = () => {
+    setIsStreetView((prev) => !prev);
+  };
+
   return (
     <div className={classes.Navigator}>
       <Headers
@@ -11,6 +18,7 @@ const Navigator = (props) => {
         score={props.score}
         room={props.room}
         username={props.username}
+        changeGameMode={changeGameMode}
       />
       {props.page !== "dashboard" ? (
         <Room
@@ -26,6 +34,7 @@ const Navigator = (props) => {
         username={props.username}
         room={props.room}
         handleScore={props.handleScore}
+        isStreetView={isStreetView}
       />
     </div>
   );
