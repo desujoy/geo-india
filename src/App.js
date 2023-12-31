@@ -5,7 +5,7 @@ import { generateUsername } from "unique-username-generator";
 import { db } from "./firebase";
 import { getDoc, doc } from "firebase/firestore";
 
-const updateScore1 = async (setScore,room,username) => {
+const updateScore1 = async (setScore, room, username) => {
   const roomRef = doc(db, "rooms", room);
   const docSnap = await getDoc(roomRef);
   if (!docSnap.exists()) {
@@ -35,7 +35,6 @@ function App() {
       return;
     }
     setRoom("None");
-    
   }, []);
 
   // updateScore1(setScore,room,username);
@@ -65,6 +64,9 @@ function App() {
         handleRoom={handleRoom}
         username={username}
       />
+      <footer>
+        Copyrigth © 2024 | <a href="https://github.com/desujoy">Sujoy De</a>
+      </footer>
     </>
   );
 }

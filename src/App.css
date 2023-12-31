@@ -1,3 +1,12 @@
 body {
-  background-color: #E3FDFD;
+  background-color: #e3fdfd;
+}
+
+footer {
+  font-family: cursive;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

@@ -83,7 +83,11 @@ const Game = (props) => {
   };
 
   return (
-    <div className={classes.game_body}>
+    <div
+      className={
+        !props.isStreetView ? classes.game_body : classes.game_body_street
+      }
+    >
       {props.isStreetView && <StreetView apiKey={apiKey} position={position} />}
       {!props.isStreetView && <QPanel map={map} />}
       <div style={{ display: "flex", flexDirection: "column", width: "40%" }}>

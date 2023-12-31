@@ -5,7 +5,7 @@ import Headers from "../Layout/Headers";
 import Room from "../Room/Room";
 
 const Navigator = (props) => {
-  const [isStreetView, setIsStreetView] = useState(true);
+  const [isStreetView, setIsStreetView] = useState(false);
 
   const changeGameMode = () => {
     setIsStreetView((prev) => !prev);

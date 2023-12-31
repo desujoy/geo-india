@@ -55,6 +55,9 @@ const GuessPanel = ({
             )}
             <button
               style={{
+                flex: "1",
+                flexDirection: "column",
+                justifyContent: "center",
                 backgroundColor: "#4CAF50",
                 border: "none",
                 color: "white",
