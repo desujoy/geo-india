@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Geo-India
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Geo-India is a geospatial game focused on India's geography. It includes an interactive quiz where players guess Indian states from their maps, along with a fun GeoGuesser-style game to identify real-world locations. The game also features public and private rooms for players to challenge each other, with leaderboards to track progress.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **MCQ Quiz**: 
+  - Identify Indian states from their maps.
+  - Multiple-choice questions with four possible options.
+  
+- **GeoGuesser Game**: 
+  - Guess locations in India based on images.
+  - Earn points based on accuracy and speed.
 
-### `npm start`
+- **Rooms**:
+  - **Public Rooms**: Play with random users or friends.
+  - **Private Rooms**: Create private rooms with invite-only access for a more personalized experience.
+  
+- **Leaderboards**:
+  - Track top performers in both public and private rooms.
+  - Compare scores with friends and the broader community.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js
+- npm or yarn
+- Firebase (for user authentication and room management)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/geo-india.git
+   cd geo-india
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Set up Firebase:
+   - Create a Firebase project.
+   - Enable Firebase Authentication and Firestore for room management.
+   - Configure Firebase in the project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Run the development server:
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+### How to Play
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **MCQ Quiz**:
+  - Click "Start Quiz" to begin.
+  - For each question, select the correct state from four options based on its map outline.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **GeoGuesser Game**:
+  - A random image of a location in India is displayed.
+  - Guess the correct location from the four provided options.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Public and Private Rooms**:
+  - Join or create a room.
+  - In private rooms, share the room code with your friends to invite them.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Leaderboards
 
-## Learn More
+- View the top players globally or within your private rooms.
+- Earn points by correctly guessing states or locations, and climb the leaderboard!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Frontend**: React, Next.js
+- **Backend**: Firebase (Firestore for room and leaderboard management, Firebase Auth for authentication)
+- **Maps**: Mapbox/Google Maps API for GeoGuesser
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+We welcome contributions! Please submit a pull request with any changes or features you'd like to add.
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
